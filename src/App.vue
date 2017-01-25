@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import Store from './store.js'
+
 export default {
   name: 'app',
   data () {
@@ -20,27 +22,30 @@ export default {
       title: '<span>?</span>this is a todolist',
       title2: '<p>todo:</p>',
       newItem: '',
-      Items: [{
-        name: 'apple',
-        isFinished: false
-      },
-      {
-        name: 'banana',
-        isFinished: true
-      }],
+      Items: Store.fetch(),
       bold: 'bold700'
     }
   },
   methods: {
     addItem: function () {
-      this.Items.push({
-        name: this.newItem,
-        isFinished: false
-      })
-      this.newItem = ''
+      if (this.newItem !== '') {
+        this.Items.push({
+          name: this.newItem,
+          isFinished: false
+        })
+        this.newItem = ''
+      }
     },
     changeFinished: function (Item) {
       Item.isFinished = !Item.isFinished
+    }
+  },
+  watch: {
+    Items: {
+      handler (val, oldVal) {
+        Store.save(val)
+      },
+      deep: true
     }
   }
 }
