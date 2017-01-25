@@ -9,12 +9,13 @@
         <p v-bind:class='[bold,{finished:Item.isFinished}]'>{{Item.name}}</p>
       </li>
     </ul>
+    <component-a v-bind:msgfromfather=fromfather></component-a>
   </div>
 </template>
 
 <script>
-import Store from './store.js'
-
+import Store from './store'
+import componentA from './components/componentA'
 export default {
   name: 'app',
   data () {
@@ -23,7 +24,8 @@ export default {
       title2: '<p>todo:</p>',
       newItem: '',
       Items: Store.fetch(),
-      bold: 'bold700'
+      bold: 'bold700',
+      fromfather: 'you are my son'
     }
   },
   methods: {
@@ -47,7 +49,8 @@ export default {
       },
       deep: true
     }
-  }
+  },
+  components: {componentA}
 }
 </script>
 
