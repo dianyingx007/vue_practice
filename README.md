@@ -1,6 +1,6 @@
 # vue_practice
 
-> A Vue.js project
+使用vue做一个Todolist
 
 ## Build Setup
 
