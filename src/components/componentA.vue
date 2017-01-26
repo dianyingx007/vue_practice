@@ -9,13 +9,15 @@
   export default {
     data () {
       return {
-        msg: 'this is componentA'
+        msg: 'this is componentA',
+        msg2: 'msg from A'
       }
     },
     props: ['msgfromfather'],
     methods: {
       myclick () {
         console.log(this.msgfromfather)
+        this.$emit('showmsgfromchild', this.msg2)
       }
     }
   }

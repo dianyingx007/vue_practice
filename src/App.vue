@@ -9,7 +9,10 @@
         <p v-bind:class='[bold,{finished:Item.isFinished}]'>{{Item.name}}</p>
       </li>
     </ul>
-    <component-a v-bind:msgfromfather=fromfather></component-a>
+    <div>子组件返回的内容：</div>
+    <p>{{msgfromchild}}</p>
+    <div>以下是子组件：</div>
+    <component-a v-bind:msgfromfather='fromfather' v-on:showmsgfromchild='getmsgfromchild'></component-a>
   </div>
 </template>
 
@@ -25,7 +28,8 @@ export default {
       newItem: '',
       Items: Store.fetch(),
       bold: 'bold700',
-      fromfather: 'you are my son'
+      fromfather: 'you are my son',
+      msgfromchild: ''
     }
   },
   methods: {
@@ -40,6 +44,9 @@ export default {
     },
     changeFinished: function (Item) {
       Item.isFinished = !Item.isFinished
+    },
+    getmsgfromchild (msg) {
+      this.msgfromchild = msg
     }
   },
   watch: {
