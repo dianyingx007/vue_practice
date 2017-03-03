@@ -14,6 +14,7 @@
 </template>
 <script>
   import store from './store'
+  import cookie from './cookie'
   export default {
     name: 'app',
     data () {
@@ -44,6 +45,9 @@
         },
         deep: true
       }
+    },
+    mounted () {
+      cookie.checkCookie()
     }
   }
 </script>
